@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Keyboard, View, Alert } from "react-native";
 //import Redux functionalities
 import { useDispatch } from "react-redux";
-import { addTaskAction, persistStoreInLocalStorageAction, readLocalStorageAction } from "../redux/actions/taskActions";
+import { addTaskAction, persistStoreInLocalStorageAction } from "../redux/actions/taskActions";
 //import own components
 import DateAndTimePicker from "../components/Pickers/DateAndTimePicker";
 import TextInput from "../components/Inputs/TextInput";
@@ -11,15 +11,13 @@ import PickerOutput from "../components/Output/PickerOutput";
 import LabelBox from "../components/LabelBox/LabelBox";
 import Button from "../components/Button/Button";
 //import CONSTANTS
-import { remindOptions, repeatOptions } from "../components/Utils/UtilConstants";
+import { remindOptions, repeatOptions } from "../Utils/UtilConstants";
 //import UTIL Functions
 import {
-  getData,
   isLaterTime,
   isPastDate,
   isToday,
-} from "../components/Utils/UtilFunctions";
-import { set } from "react-native-reanimated";
+} from "../Utils/UtilFunctions";
 
 
 const TITLE = "title";
@@ -29,16 +27,30 @@ const ENDTIME = "endTime";
 const REMIND = "remind";
 const REPEAT = "repeat";
 const COMPLETED = "completed";
+const ID = "id";
+
+export interface ITask {
+  [TITLE]: string,
+  [DEADLINE]: Date ,
+  [STARTTIME]: Date,
+  [ENDTIME]: Date,
+  [REMIND]: string,
+  [REPEAT]: string,
+  [COMPLETED]: boolean,
+  [ID]: number,
+
+}
 
 const AddTaskSreen = ({navigation}) => {
-  const initialTaskData = {
+  const initialTaskData: ITask = {
     [TITLE]: "",
-    [DEADLINE]: "",
-    [STARTTIME]: "",
-    [ENDTIME]: "",
+    [DEADLINE]: null,
+    [STARTTIME]: null,
+    [ENDTIME]: null,
     [REMIND]: "none",
     [REPEAT]: "none",
     [COMPLETED]: false,
+    [ID]: null,
   };
 
   const initialPickerState = {
@@ -64,8 +76,8 @@ const AddTaskSreen = ({navigation}) => {
       propiety: propiety,
       initialValue:
         propiety === ENDTIME &&
-        taskData.startTime !== "" &&
-        taskData.endTime === ""
+        taskData.startTime !== null &&
+        taskData.endTime === null
           ? taskData.startTime
           : taskData[propiety],
     });
@@ -115,9 +127,9 @@ const AddTaskSreen = ({navigation}) => {
   const formCompleted = () => {
     if (
       taskData.title.trim() !== "" &&
-      taskData.deadline !== "" &&
-      taskData.startTime !== "" &&
-      taskData.endTime !== ""
+      taskData.deadline !== null &&
+      taskData.startTime !== null &&
+      taskData.endTime !== null
     )
       return true;
     else return false;
@@ -158,7 +170,7 @@ const AddTaskSreen = ({navigation}) => {
       onTouchStart={() => Keyboard.dismiss()}
     >
       <View style={{ paddingHorizontal: 25 }}>
-        <LabelBox label="Title">
+        <LabelBox label="Title" style>
           <TextInput
             placeholder="Define task title"
             value={taskData.title}
@@ -166,12 +178,11 @@ const AddTaskSreen = ({navigation}) => {
             edityngPropiety={TITLE}
           />
         </LabelBox>
-        <LabelBox label="Deadline">
+        <LabelBox label="Deadline" style>
           <PickerOutput
             output={taskData.deadline}
             onPress={() => activePicker("date", DEADLINE)}
             mode={"date"}
-            pickerState={pickerState}
           />
         </LabelBox>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -190,7 +201,7 @@ const AddTaskSreen = ({navigation}) => {
             />
           </LabelBox>
         </View>
-        <LabelBox label="Remind">
+        <LabelBox label="Remind" style>
           <ListPicker
             itemsList={remindOptions}
             defaultItem="Don't remind"
@@ -199,7 +210,7 @@ const AddTaskSreen = ({navigation}) => {
             reciveTaskData={reciveTaskData}
           />
         </LabelBox>
-        <LabelBox label="Repeat">
+        <LabelBox label="Repeat" style>
           <ListPicker
             itemsList={repeatOptions}
             defaultItem="Don't repeat"

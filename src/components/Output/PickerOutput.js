@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { styles } from "../FormStyles/formStyles";
-import { dateFormater, timeFormater24 } from "../Utils/UtilFunctions";
+import { dateFormater, timeFormater24 } from "../../Utils/UtilFunctions";
 import { Ionicons } from "@expo/vector-icons";
 
 const Output = ({ output, onPress, mode }) => {

@@ -7,7 +7,7 @@ const CompletedTaskScreen = () => {
 
     const taskArrayFromStore = useSelector(state => state.taskReducer)
 
-    const completedTaskArray = taskArrayFromStore.filter(item => item.completed === true)
+    const completedTaskArray = taskArrayFromStore?.filter(item => item.completed === true)
 
     return (
         <View style={{flex: 1, paddingHorizontal:20, paddingTop:20, backgroundColor: 'white'}}>  
