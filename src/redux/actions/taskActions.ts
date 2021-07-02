@@ -47,6 +47,9 @@ export const resetTaskListAction = () : IActionPlainObject => {
     }
 }
 
+//It's an auxiliar function that returns a an asyncronous function able to get the data
+//from the local storage. This returned async function will be intercepted by "Thunk" 
+//Thunk will wait the callback answer and then runs the dispatch. 
 const getTaskListFromLocalStore = () : Function => {
     return async (dispatch: Function) : Promise<void> => {
         const array: ITask[] = await getData('taskList').then(array => array)

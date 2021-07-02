@@ -5,21 +5,21 @@ import { ADD_TASK, IActionPlainObject, PERSIST_STORE_IN_LOCAL_STORAGE, READ_LOCA
 
 const initialTaskListState: ITask[] = []
 
-const taskReducer = (state = initialTaskListState, action: IActionPlainObject) => {
-    switch(action.type){
-        case ADD_TASK:{
-            const updatedState: ITask[] = [action.payload, ...state] //state.concat(action.payload)
-            return updatedState} 
+const taskReducer = (state: ITask[] = initialTaskListState, action: IActionPlainObject): ITask[] => {
+    switch (action.type) {
+        case ADD_TASK:
+            return [action.payload, ...state]
         case TOOGLE_COMPLETE:
-            return state.map(item => item.id===action.payload ? {...item, completed: !item.completed} : item);
-        case PERSIST_STORE_IN_LOCAL_STORAGE:{
+            return state.map(item => item.id === action.payload ? { ...item, completed: !item.completed } : item);
+        case PERSIST_STORE_IN_LOCAL_STORAGE: {
             storeData('taskList', state)
-            return state}
+            return state
+        }
         case READ_LOCAL_STORAGE:
-            return action.payload
+            return [...state, ...action.payload]
         case RESET_TASKLIST:
             return action.payload
-        default: 
+        default:
             return state;
     }
 }

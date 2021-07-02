@@ -2,8 +2,15 @@ import React from "react";
 import { CheckBox, Text, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { persistStoreInLocalStorageAction, toogleCompletedAction } from "../../redux/actions/taskActions";
+import { ITask } from '../../screens/AddTaskSreen'
 
-const Task = ({item}) => {
+type TaskPropType = {
+  item: ITask
+}
+
+const Task = (prop: TaskPropType) => {
+
+  const {item} = prop
 
     const dispatch = useDispatch()
 

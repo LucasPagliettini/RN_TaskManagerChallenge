@@ -3,4 +3,4 @@ import taskReducer from './taskRecucer'
 
 export const rootReducer = combineReducers({
     taskReducer
-})
+}) 

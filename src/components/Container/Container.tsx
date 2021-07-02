@@ -1,11 +1,17 @@
 import React from 'react'
+import { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
+type ContainerPropType ={
+  children: JSX.Element,
+  viewStyleProps: ViewStyle, 
+}
 
+const Container = (prop: ContainerPropType) => {
 
-const Container = ({children, ...props}) => {
+  const {children, ...viewStyleProps} = prop
     return (
-        <View style={styles.container} {...props}>
+        <View style={styles.container} {...viewStyleProps}>
             {children}
         </View>
     )

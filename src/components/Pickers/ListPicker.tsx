@@ -3,7 +3,17 @@ import { View, Text } from "react-native";
 import { Picker } from "@react-native-picker/picker"; //npm install @react-native-picker/picker --save
 import { styles } from "../FormStyles/formStyles";
 
-const ListPicker = ({ itemsList, defaultItem, propiety, initialValue, reciveTaskData,  }) => {
+type ListPickerPropType = {
+  itemsList: string[], 
+  defaultItem: string, 
+  propiety: string, 
+  initialValue: string, 
+  reciveTaskData: Function
+}
+
+const ListPicker = (prop: ListPickerPropType) => {
+
+  const { itemsList, defaultItem, propiety, initialValue, reciveTaskData } = prop
 
   return (
     <View style={styles.container}>
@@ -16,7 +26,6 @@ const ListPicker = ({ itemsList, defaultItem, propiety, initialValue, reciveTask
           label={defaultItem}
           value="none"
           color={styles.placeHolder.color}
-          enabled={false}
         />
         {itemsList.map((item, index) => (
           <Picker.Item key={index} label={item} value={item} color={styles.textInput.color} />

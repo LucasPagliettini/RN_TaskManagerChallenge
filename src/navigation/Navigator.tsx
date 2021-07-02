@@ -12,6 +12,8 @@ const Navigator = () => {
 
   const dispatch =  useDispatch()
 
+  //It is a function that runs only once when the app starts. It dispatches the
+  //action that reads the initial data from localStorage
   useEffect(() => {
     dispatch(getTaskListFromLocalStore())
   }, [])

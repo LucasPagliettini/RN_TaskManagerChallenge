@@ -2,8 +2,8 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles';
+import { persistStoreInLocalStorageAction, resetTaskListAction } from '../../redux/actions/taskActions';
 import { useDispatch } from 'react-redux';
-import { persistStoreInLocalStorageAction, resetTaskList, resetTaskListAction } from '../../redux/actions/taskActions';
 
 const NavNotifyButton = () => {
 

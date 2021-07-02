@@ -1,12 +1,14 @@
 import React from 'react'
 import { View } from 'react-native';
-import { useSelector } from 'react-redux';
 import TasksList from '../../components/Lists/TasksList';
+import { useAppSelector } from '../../redux/store';
 
 const CompletedTaskScreen = () => {
 
-    const taskArrayFromStore = useSelector(state => state.taskReducer)
+    //It returns the hole task array from the store
+    const taskArrayFromStore = useAppSelector(state => state.taskReducer)
 
+    //It returns a array with the uncompleted tasks
     const completedTaskArray = taskArrayFromStore?.filter(item => item.completed === true)
 
     return (

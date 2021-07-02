@@ -1,6 +1,5 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { useNavigation } from '@react-navigation/native';
 
 import EmptyScreen from "./EmptyScreen";
 import Button from "../components/Button/Button";
@@ -8,9 +7,9 @@ import AllTaskListSreen from "./TaskListSceens/AllTaskListSreen";
 import CompletedTaskScreen from "./TaskListSceens/CompletedTaskScreen";
 import UncompletedTaskScreen from "./TaskListSceens/UncompletedTaskScreen";
 
-const BoardScreen = () => {
+const BoardScreen = ({navigation}) => {
   const Tab = createMaterialTopTabNavigator();
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
 
   return (
     <>

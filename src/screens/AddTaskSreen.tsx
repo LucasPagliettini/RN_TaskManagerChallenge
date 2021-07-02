@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Keyboard, View, Alert } from "react-native";
 //import Redux functionalities
 import { useDispatch } from "react-redux";
-import { addTaskAction, persistStoreInLocalStorageAction } from "../redux/actions/taskActions";
+import {
+  addTaskAction,
+  persistStoreInLocalStorageAction,
+} from "../redux/actions/taskActions";
 //import own components
 import DateAndTimePicker from "../components/Pickers/DateAndTimePicker";
 import TextInput from "../components/Inputs/TextInput";
@@ -13,13 +16,9 @@ import Button from "../components/Button/Button";
 //import CONSTANTS
 import { remindOptions, repeatOptions } from "../Utils/UtilConstants";
 //import UTIL Functions
-import {
-  isLaterTime,
-  isPastDate,
-  isToday,
-} from "../Utils/UtilFunctions";
+import { isLaterTime, isPastDate, isToday } from "../Utils/UtilFunctions";
 
-
+//CONSTANTS declaration to use in task object and internal functions
 const TITLE = "title";
 const DEADLINE = "deadline";
 const STARTTIME = "startTime";
@@ -29,19 +28,32 @@ const REPEAT = "repeat";
 const COMPLETED = "completed";
 const ID = "id";
 
+//Task object interface
 export interface ITask {
-  [TITLE]: string,
-  [DEADLINE]: Date ,
-  [STARTTIME]: Date,
-  [ENDTIME]: Date,
-  [REMIND]: string,
-  [REPEAT]: string,
-  [COMPLETED]: boolean,
-  [ID]: number,
-
+  [TITLE]: string;
+  [DEADLINE]: Date;
+  [STARTTIME]: Date;
+  [ENDTIME]: Date;
+  [REMIND]: string;
+  [REPEAT]: string;
+  [COMPLETED]: boolean;
+  [ID]: number;
 }
 
-const AddTaskSreen = ({navigation}) => {
+export enum PickerMode {
+  date = "date",
+  time = "time",
+}
+
+//PickerState object Interface
+export interface IPickerState {
+  show: boolean;
+  mode: PickerMode;
+  propiety: string;
+  initialValue: string | Date;
+}
+
+const AddTaskSreen = ({ navigation }) => {
   const initialTaskData: ITask = {
     [TITLE]: "",
     [DEADLINE]: null,
@@ -53,22 +65,29 @@ const AddTaskSreen = ({navigation}) => {
     [ID]: null,
   };
 
-  const initialPickerState = {
+  const initialPickerState: IPickerState = {
     show: false,
-    mode: "default",
-    propiety: "",
-    initialValue: "",
+    mode: PickerMode.date,
+    propiety: null,
+    initialValue: null,
   };
 
   const dispatch = useDispatch();
 
   const [taskData, setTaskData] = useState(initialTaskData);
-  const reciveTaskData = (propiety, value) => {
+
+  //Function that recives the name of the property and the new value and updates
+  //to set the the new value in the Task Object
+  const reciveTaskData = (propiety: string, value: any): void => {
     setTaskData({ ...taskData, [propiety]: value });
   };
 
   const [pickerState, setPickerState] = useState(initialPickerState);
-  const activePicker = (mode, propiety) => {
+
+  //Function that recives a mode ("date" or "time") to show DatePicker o TimePicker
+  //after turning show property into true. It also recive the name of a property to work with.
+  //It defines the the initialValue to show when the picker opens
+  const activePicker = (mode: PickerMode, propiety: string): void => {
     setPickerState({
       ...pickerState,
       show: true,
@@ -83,24 +102,30 @@ const AddTaskSreen = ({navigation}) => {
     });
   };
 
-
-
-  const createNewTask = (taskInfo) => {
-    const newTask = { ...taskInfo, id: Date.now() };
+  //It takes a Task object, asign it a unique ID and dispatch the "add to store" action
+  //together with the "persist in localStorage action"
+  const createNewTask = (taskInfo: ITask): void => {
+    const newTask: ITask = { ...taskInfo, id: Date.now() };
     dispatch(addTaskAction(newTask));
-    dispatch(persistStoreInLocalStorageAction())
+    dispatch(persistStoreInLocalStorageAction());
   };
 
-  const resetForm = () => {
+  const resetForm = (): void => {
     setTaskData(initialTaskData);
   };
 
-  const newTaskDialog = (taskInfo) => {
+  //It opens the open modal messages depending on the results of validations. When passing validation,
+  //the messages let  the user decide whether to create a task or not, to stay in the form to create
+  //another task or navigate to "Board Screen" (executing the corresponding functions). Otherwise
+  //messages will tell the user whath the problem is.
+  const newTaskDialog = (taskInfo: ITask): void => {
     if (!formCompleted()) {
       Alert.alert("Creating new Task", "Please fill all empty fields", [
         { text: "OK" },
       ]);
-    } else if (formHasValidDates(taskData.deadline,taskData.startTime, taskData.endTime)) {
+    } else if (
+      formHasValidDates(taskData.deadline, taskData.startTime, taskData.endTime)
+    ) {
       Alert.alert(
         "Creating new Task",
         "Do you confirm to create a new task with this information?",
@@ -124,7 +149,8 @@ const AddTaskSreen = ({navigation}) => {
     }
   };
 
-  const formCompleted = () => {
+  //It checks if there is a defined value for each required fields and return a boolean
+  const formCompleted = (): boolean => {
     if (
       taskData.title.trim() !== "" &&
       taskData.deadline !== null &&
@@ -135,8 +161,14 @@ const AddTaskSreen = ({navigation}) => {
     else return false;
   };
 
-
-  const formHasValidDates = (deadline, startTime, endTime) => {
+  //It check if the defined Date is not past Date, and if it's current day checks if the
+  //selected startTime is not past. Finally it checks if the selected endTime is correctly
+  //"later" than startTime
+  const formHasValidDates = (
+    deadline: Date,
+    startTime: Date,
+    endTime: Date
+  ): boolean => {
     if (isPastDate(deadline)) {
       Alert.alert("Validating dates...", '"Deadline" must be future date!', [
         { text: "OK" },
@@ -181,23 +213,23 @@ const AddTaskSreen = ({navigation}) => {
         <LabelBox label="Deadline" style>
           <PickerOutput
             output={taskData.deadline}
-            onPress={() => activePicker("date", DEADLINE)}
-            mode={"date"}
+            onPress={() => activePicker(PickerMode.date, DEADLINE)}
+            mode={PickerMode.date}
           />
         </LabelBox>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <LabelBox label="Start Time" style={{ width: "48%" }}>
             <PickerOutput
               output={taskData.startTime}
-              onPress={() => activePicker("time", STARTTIME)}
-              mode={"time"}
+              onPress={() => activePicker(PickerMode.time, STARTTIME)}
+              mode={PickerMode.time}
             />
           </LabelBox>
           <LabelBox label="End Time" style={{ width: "48%" }}>
             <PickerOutput
               output={taskData.endTime}
-              onPress={() => activePicker("time", ENDTIME)}
-              mode={"time"}
+              onPress={() => activePicker(PickerMode.time, ENDTIME)}
+              mode={PickerMode.time}
             />
           </LabelBox>
         </View>

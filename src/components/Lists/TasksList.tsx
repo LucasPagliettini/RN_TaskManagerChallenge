@@ -1,6 +1,11 @@
 import React from "react";
 import { FlatList } from "react-native";
+import { ITask } from "../../screens/AddTaskSreen";
 import Task from "../Task/Task";
+
+type TasklistProp = {
+  taskArray: ITask[]
+}
 
 const TasksList = ({taskArray}) => {
   
