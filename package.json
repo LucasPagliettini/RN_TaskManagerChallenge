@@ -10,7 +10,7 @@
   "dependencies": {
     "@gregfrench/react-native-wheel-picker": "^1.2.15",
     "@react-native-async-storage/async-storage": "^1.13.0",
-    "@react-native-community/datetimepicker": "^3.2.0",
+    "@react-native-community/datetimepicker": "3.2.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-picker/picker": "1.9.11",
     "@react-navigation/bottom-tabs": "^5.11.11",
@@ -25,6 +25,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
     "react-native-dropdown-picker": "^5.1.21",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-modal-datetime-picker": "^10.0.0",
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",

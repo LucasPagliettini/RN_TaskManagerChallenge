@@ -16,7 +16,7 @@ const taskReducer = (state: ITask[] = initialTaskListState, action: IActionPlain
             return state
         }
         case READ_LOCAL_STORAGE:
-            return [...state, ...action.payload]
+            return action.payload ? action.payload : state
         case RESET_TASKLIST:
             return action.payload
         default:

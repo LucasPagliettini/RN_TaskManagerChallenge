@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Platform } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker"; //npm install @react-native-community/datetimepicker --legacy-peer-deps
+//import DateTimePicker from "@react-native-community/datetimepicker"; //npm install @react-native-community/datetimepicker --legacy-peer-deps
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { IPickerState } from "../../screens/AddTaskSreen";
 
 type DateAndTimePickerTypeProp = {
@@ -13,20 +14,23 @@ const DateAndTimePicker = (prop: DateAndTimePickerTypeProp) => {
   const { pickerState, setPickerState, reciveTaskData } = prop;
 
   //It runs the "reciveTaskData" on the onChange Picker event with the selected date
-  const onChange = (e: any, selectedDate: Date) : void => {
-    setPickerState({ ...pickerState, show: Platform.OS === "ios" });
+  const confirm = (/*e: any = null,*/ selectedDate: Date) : void => {
     const currentDate = selectedDate;
-    if (currentDate) {
-      reciveTaskData(pickerState.propiety, currentDate);
-    }
+    hidePicker()
+    reciveTaskData(pickerState.propiety, currentDate);
   };
+
+  const hidePicker = () : void => {
+    setPickerState({ ...pickerState, show: false });
+  }
 
   return (
     <View>
-      {pickerState.show && (
-        <DateTimePicker
+      {//pickerState.show && 
+        <DateTimePickerModal
           testID="dateTimePicker"
-          value={
+          isVisible={pickerState.show}
+          date={
             pickerState.initialValue ?
                typeof pickerState.initialValue === 'object'?
                   pickerState.initialValue : null
@@ -35,10 +39,12 @@ const DateAndTimePicker = (prop: DateAndTimePickerTypeProp) => {
           mode={pickerState.mode}
           is24Hour={true}
           display="default"
-          onChange={onChange}
+          //onChange={onChange}
+          onConfirm={confirm}
+          onCancel={hidePicker}
           minimumDate={new Date(Date.now())}
         />
-      )}
+      }
     </View>
   );
 };

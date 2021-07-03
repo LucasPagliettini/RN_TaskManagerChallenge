@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text } from "react-native";
+import React from "react";
+import { Platform, View, } from "react-native";
 import { Picker } from "@react-native-picker/picker"; //npm install @react-native-picker/picker --save
 import { styles } from "../FormStyles/formStyles";
 
@@ -21,6 +21,9 @@ const ListPicker = (prop: ListPickerPropType) => {
         selectedValue={initialValue}
         onValueChange={(itemValue) => reciveTaskData(propiety, itemValue)}
         mode="dialog"
+        prompt={propiety.toUpperCase() + ' Options'}
+        style={Platform.OS === 'ios' ? {height: 20} : null}
+        itemStyle={{height: styles.container.height}}
       >
         <Picker.Item
           label={defaultItem}
