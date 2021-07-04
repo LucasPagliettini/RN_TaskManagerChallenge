@@ -1,8 +1,9 @@
 import React from "react";
-import { CheckBox, Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { persistStoreInLocalStorageAction, toogleCompletedAction } from "../../redux/actions/taskActions";
 import { ITask } from '../../screens/AddTaskSreen'
+import {CheckBox} from '../CheckBox'
 
 type TaskPropType = {
   item: ITask
@@ -25,7 +26,8 @@ const Task = (prop: TaskPropType) => {
           <CheckBox
             value={item.completed}
             onValueChange={() => changeCompletedState()}
-            style={styles.checkbox}
+            color='green'
+            size={25}
           />
           <Text style={styles.label}>{item.title}</Text>
         </View>
@@ -37,6 +39,7 @@ const Task = (prop: TaskPropType) => {
     checkboxContainer: {
       flexDirection: "row",
       marginBottom: 20,
+      alignItems: 'center'
     },
     checkbox: {
       alignSelf: "center",
