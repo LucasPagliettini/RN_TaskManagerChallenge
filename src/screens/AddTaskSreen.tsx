@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Keyboard, View, Alert } from "react-native";
+import { Keyboard, View, ScrollView, Alert } from "react-native";
 //import Redux functionalities
 import { useDispatch } from "react-redux";
 import {
@@ -201,7 +201,7 @@ const AddTaskSreen = ({ navigation }) => {
       style={{ justifyContent: "space-between", flex: 1 }}
       onTouchStart={() => Keyboard.dismiss()}
     >
-      <View style={{ paddingHorizontal: 25 }}>
+      <ScrollView style={{ paddingHorizontal: 25 }}>
         <LabelBox label="Title" style>
           <TextInput
             placeholder="Define task title"
@@ -256,7 +256,7 @@ const AddTaskSreen = ({ navigation }) => {
           setPickerState={setPickerState}
           reciveTaskData={reciveTaskData}
         />
-      </View>
+      </ScrollView>
       <Button
         text="Create new task"
         color="green"

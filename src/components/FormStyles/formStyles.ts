@@ -5,12 +5,11 @@ export const styles = StyleSheet.create({
         backgroundColor: 'gainsboro',
         borderRadius: 15,
         paddingHorizontal: 15,
-        height: 50
+        height: 50,
     },
     textInput: {
         fontSize: 16,
         color: 'black',
-        paddingVertical: 10,
     },
     placeHolder: {
         color: 'grey'

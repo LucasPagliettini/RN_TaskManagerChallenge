@@ -26,7 +26,6 @@ const DateAndTimePicker = (prop: DateAndTimePickerTypeProp) => {
 
   return (
     <View>
-      {//pickerState.show && 
         <DateTimePickerModal
           testID="dateTimePicker"
           isVisible={pickerState.show}
@@ -38,13 +37,13 @@ const DateAndTimePicker = (prop: DateAndTimePickerTypeProp) => {
           }
           mode={pickerState.mode}
           is24Hour={true}
-          display="default"
-          //onChange={onChange}
+          display={Platform.OS==='android' ? "default" : 'spinner'}
           onConfirm={confirm}
           onCancel={hidePicker}
-          minimumDate={new Date(Date.now())}
+          minimumDate={pickerState.mode==="date" ? new Date(Date.now()) : null}
+          //style={{backgroundColor:'grey',}}
+          isDarkModeEnabled={false}
         />
-      }
     </View>
   );
 };
