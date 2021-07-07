@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Keyboard, View, ScrollView, Alert } from "react-native";
+import { Keyboard, View, ScrollView, Alert, } from "react-native";
 //import Redux functionalities
 import { useDispatch } from "react-redux";
 import {
@@ -17,6 +17,8 @@ import Button from "../components/Button/Button";
 import { remindOptions, repeatOptions } from "../Utils/UtilConstants";
 //import UTIL Functions
 import { isLaterTime, isPastDate, isToday } from "../Utils/UtilFunctions";
+import { playSound } from "../components/Audio/playSound";
+
 
 //CONSTANTS declaration to use in task object and internal functions
 const TITLE = "title";

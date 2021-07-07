@@ -17,12 +17,14 @@ const BoardScreen = ({navigation}) => {
         tabBarPosition="top"
         tabBarOptions={{
           labelStyle: { fontSize: 14, textTransform: "capitalize",},
-          tabStyle: { width: "auto", },
-          style: { paddingHorizontal: 13, },
+          tabStyle: { width: 'auto',}, //ViewStye of each tab
+          scrollEnabled: true,
+          allowFontScaling: true,
+          style: { paddingHorizontal: 13,  },
           indicatorStyle: { backgroundColor: "black", marginHorizontal: 13 },
         }}
       >
-        <Tab.Screen name="All" component={AllTaskListSreen} />
+        <Tab.Screen name="All" component={AllTaskListSreen}/>
         <Tab.Screen name="Completed" component={CompletedTaskScreen} />
         <Tab.Screen name="Uncompleted" component={UncompletedTaskScreen} />
         <Tab.Screen name="Favorite" component={EmptyScreen} />

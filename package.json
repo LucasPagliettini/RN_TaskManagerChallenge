@@ -8,7 +8,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@gregfrench/react-native-wheel-picker": "^1.2.15",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "3.2.0",
     "@react-native-community/masked-view": "0.1.10",
@@ -19,6 +18,7 @@
     "@react-navigation/stack": "^5.14.5",
     "@types/react-redux": "^7.1.16",
     "expo": "~41.0.1",
+    "expo-av": "~9.1.2",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
