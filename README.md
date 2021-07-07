@@ -42,7 +42,7 @@ Everywhere the user can set tasks as "done" or "undone", and the taskLists will 
 </p>
 
 ### Example Android Video
-<video src="readmeFiles\screenVidos\androidVideo\AndroidExampleVideo.mp4" width="170" height="300"/>
+<video src="readmeFiles\screenVidos\androidVideo\AndroidExampleVideo.mp4" width="170" height="300"></video>
 
 
 ## Tools used:
