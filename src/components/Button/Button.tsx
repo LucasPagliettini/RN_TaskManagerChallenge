@@ -2,8 +2,11 @@ import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import { styles } from "./styles";
 
-interface IButtonProps { text: string; onPress: () => void; color: string };
-
+interface IButtonProps {
+  text: string;
+  onPress: () => void;
+  color: string;
+}
 
 const Button = (props: IButtonProps) => {
   const { text, onPress, color } = props;

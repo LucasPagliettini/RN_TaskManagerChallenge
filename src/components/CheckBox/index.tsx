@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ViewStyle } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
@@ -10,22 +10,28 @@ type CheckBoxPropType = {
   value?: boolean;
 };
 export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
-  let { size , color = "green", onValueChange, value } = prop;
-
-  //Limiting minimun size 20px
-  size = size !== undefined && size > 20 ? size : 20
+  
+  const { size = 20, color = "green", onValueChange, value } = prop;
 
   const [checked, setChecked] = useState(false);
 
-  //If there is a value recived as a prop, it sincronice whit it the "checked" state
-  value !== undefined && value !== checked ? setChecked(!checked) : null;
+  //If there is a value recived as a prop, it equals the "checked" state value to to the prop value
+  const adjustStateWithRecivedValue = (): void => {
+    if (value !== undefined && value !== checked) {
+      setChecked(!checked);
+    }
+  };
+
+  useEffect(() => {
+    adjustStateWithRecivedValue();
+  }, [value]);
 
   const unCheckedStyle: ViewStyle = {
     height: size,
     width: size,
     borderColor: color,
     borderWidth: 2,
-    borderRadius: size/5,
+    borderRadius: size / 5,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
@@ -41,13 +47,18 @@ export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
 
   //It toogle the checked state and runs the posible "onValueChange" recived as a prop
   const handleOnPress = () => {
-    value === undefined ? setChecked(!checked) : null;
-    onValueChange ? onValueChange() : null;
+    if (value === undefined) setChecked(!checked);
+    if (onValueChange) onValueChange();
   };
 
   return (
-    <TouchableOpacity style={currentStyle} onPress={() => handleOnPress()}>
-      <Ionicons name="checkmark-sharp" size={size+2} style={{margin: -4}} color="white" />
+    <TouchableOpacity style={currentStyle} onPress={handleOnPress}>
+      <Ionicons
+        name="checkmark-sharp"
+        size={size + 2}
+        style={{ margin: -4 }}
+        color="white"
+      />
     </TouchableOpacity>
   );
 };

@@ -17,7 +17,7 @@ const BoardScreen = ({navigation}) => {
         tabBarPosition="top"
         tabBarOptions={{
           labelStyle: { fontSize: 14, textTransform: "capitalize",},
-          tabStyle: { width: 'auto',}, //ViewStye of each tab
+          tabStyle: { width: 'auto',}, //ViewStyle of each tab
           scrollEnabled: true,
           allowFontScaling: true,
           style: { paddingHorizontal: 13,  },

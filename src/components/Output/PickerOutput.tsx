@@ -10,10 +10,9 @@ type PikerTypeProp = {
   mode: string;
 };
 
-const PickerOutput = (prop: PikerTypeProp) => {
-  const { output, onPress, mode } = prop;
+const PickerOutput = ({output, onPress, mode}: PikerTypeProp) => {
 
-  //It returns a string from the value of "output" and "mode" props. 
+  //It returns a string from the value of "output" and "mode" props.
   const defineOutputText = (): string => {
     if (output)
       if (mode === "date") return dateFormater(output);
@@ -24,7 +23,7 @@ const PickerOutput = (prop: PikerTypeProp) => {
 
   const outputText = defineOutputText();
 
-  //It returns an object with specific text style properties depending on having 
+  //It returns an object with specific text style properties depending on having
   //or not some value for "output" prop.
   const defineOutputTextStyle = () =>
     output ? styles.textInput : { ...styles.textInput, ...styles.placeHolder };

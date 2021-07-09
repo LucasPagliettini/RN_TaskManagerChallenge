@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//https://react-native-async-storage.github.io/async-storage/docs/usage/
 
 //PERSISTANCE FUNCTIONALITIES
 export const storeData = async (storeKey: string, objectValue: Object) : Promise<void> => {

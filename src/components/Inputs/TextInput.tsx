@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, TextInput as TI, View } from "react-native";
+import { Platform, TextInput as TInput, View } from "react-native";
 import { styles } from "../FormStyles/formStyles";
 
 type InputPropsType = {
@@ -9,17 +9,24 @@ type InputPropsType = {
   edityngPropiety: string;
 };
 
-const TextInput = (props: InputPropsType) => {
-  const { placeholder, value, reciveTaskData, edityngPropiety } = props;
+const TextInput = ({
+  placeholder,
+  value,
+  reciveTaskData,
+  edityngPropiety,
+}: InputPropsType) => {
+  
+  const defineCurrentStyle = () => {
+    if (Platform.OS === "ios") return { ...styles.textInput, marginTop: 15 };
+    else return { ...styles.textInput, marginTop: 10 };
+  };
+
+  const currentStyle = defineCurrentStyle();
 
   return (
     <View style={styles.container}>
-      <TI
-        style={
-          Platform.OS === "ios"
-            ? { ...styles.textInput, marginTop: 15 }
-            : { ...styles.textInput, marginTop: 10 }
-        }
+      <TInput
+        style={currentStyle}
         placeholder={placeholder}
         placeholderTextColor={styles.placeHolder.color}
         value={value}

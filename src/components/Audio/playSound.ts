@@ -1,4 +1,4 @@
-import { Audio } from 'expo-av'; //expo install expo-av
+import { Audio } from 'expo-av'; 
 import { AVPlaybackSource } from 'expo-av/build/AV';
 import { Alert } from 'react-native';
 

@@ -78,8 +78,8 @@ const AddTaskSreen = ({ navigation }) => {
 
   const [taskData, setTaskData] = useState(initialTaskData);
 
-  //Function that recives the name of the property and the new value and updates
-  //to set the the new value in the Task Object
+  //Function that recives the name of a property and the new value 
+  //to update the Task Object
   const reciveTaskData = (propiety: string, value: any): void => {
     setTaskData({ ...taskData, [propiety]: value });
   };
@@ -87,7 +87,7 @@ const AddTaskSreen = ({ navigation }) => {
   const [pickerState, setPickerState] = useState(initialPickerState);
 
   //Function that recives a mode ("date" or "time") to show DatePicker o TimePicker
-  //after turning show property into true. It also recive the name of a property to work with.
+  //after turning show property into true. It also recives the name of a property to work with.
   //It defines the the initialValue to show when the picker opens
   const activePicker = (mode: PickerMode, propiety: string): void => {
     setPickerState({
@@ -104,7 +104,7 @@ const AddTaskSreen = ({ navigation }) => {
     });
   };
 
-  //It takes a Task object, asign it a unique ID and dispatch the "add to store" action
+  //It takes a Task object, assigns it a unique ID and dispatch the "add to store" action
   //together with the "persist in localStorage action"
   const createNewTask = (taskInfo: ITask): void => {
     const newTask: ITask = { ...taskInfo, id: Date.now() };
@@ -116,10 +116,10 @@ const AddTaskSreen = ({ navigation }) => {
     setTaskData(initialTaskData);
   };
 
-  //It opens the open modal messages depending on the results of validations. When passing validation,
-  //the messages let  the user decide whether to create a task or not, to stay in the form to create
+  //It opens the modal messages depending on the results of validations. When passing validation,
+  //the messages let the user decide whether to create a task or not, to stay in the form to create
   //another task or navigate to "Board Screen" (executing the corresponding functions). Otherwise
-  //messages will tell the user whath the problem is.
+  //messages will tell the user what the problem is.
   const newTaskDialog = (taskInfo: ITask): void => {
     if (!formCompleted()) {
       Alert.alert("Creating new Task", "Please fill all empty fields", [
@@ -204,7 +204,7 @@ const AddTaskSreen = ({ navigation }) => {
       onTouchStart={() => Keyboard.dismiss()}
     >
       <ScrollView style={{ paddingHorizontal: 25 }}>
-        <LabelBox label="Title" style>
+        <LabelBox label="Title">
           <TextInput
             placeholder="Define task title"
             value={taskData.title}
@@ -212,7 +212,7 @@ const AddTaskSreen = ({ navigation }) => {
             edityngPropiety={TITLE}
           />
         </LabelBox>
-        <LabelBox label="Deadline" style>
+        <LabelBox label="Deadline" >
           <PickerOutput
             output={taskData.deadline}
             onPress={() => activePicker(PickerMode.date, DEADLINE)}
@@ -235,7 +235,7 @@ const AddTaskSreen = ({ navigation }) => {
             />
           </LabelBox>
         </View>
-        <LabelBox label="Remind" style>
+        <LabelBox label="Remind" >
           <ListPicker
             itemsList={remindOptions}
             defaultItem="Don't remind"
@@ -244,7 +244,7 @@ const AddTaskSreen = ({ navigation }) => {
             reciveTaskData={reciveTaskData}
           />
         </LabelBox>
-        <LabelBox label="Repeat" style>
+        <LabelBox label="Repeat">
           <ListPicker
             itemsList={repeatOptions}
             defaultItem="Don't repeat"
