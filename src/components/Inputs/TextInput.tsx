@@ -1,6 +1,6 @@
-import React from "react";
-import { Platform, TextInput as TInput, View } from "react-native";
-import { styles } from "../FormStyles/formStyles";
+import React from 'react';
+import { Platform, TextInput as TInput, View } from 'react-native';
+import styles from '../FormStyles/formStyles';
 
 type InputPropsType = {
   placeholder: string;
@@ -9,16 +9,13 @@ type InputPropsType = {
   edityngPropiety: string;
 };
 
-const TextInput = ({
-  placeholder,
-  value,
-  reciveTaskData,
-  edityngPropiety,
-}: InputPropsType) => {
-  
+const TextInput = (prop: InputPropsType) => {
+  // eslint-disable-next-line object-curly-newline
+  const { placeholder, value, reciveTaskData, edityngPropiety } = prop;
+
   const defineCurrentStyle = () => {
-    if (Platform.OS === "ios") return { ...styles.textInput, marginTop: 15 };
-    else return { ...styles.textInput, marginTop: 10 };
+    if (Platform.OS === 'ios') return { ...styles.textInput, marginTop: 15 };
+    return { ...styles.textInput, marginTop: 10 };
   };
 
   const currentStyle = defineCurrentStyle();

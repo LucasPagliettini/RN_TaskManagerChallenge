@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ViewStyle } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { ViewStyle } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
 
 type CheckBoxPropType = {
   size?: number;
@@ -9,13 +10,14 @@ type CheckBoxPropType = {
   onValueChange?: () => void;
   value?: boolean;
 };
-export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
-  
-  const { size = 20, color = "green", onValueChange, value } = prop;
+const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
+  const {
+    size = 20, color = 'green', onValueChange, value,
+  } = prop;
 
   const [checked, setChecked] = useState(false);
 
-  //If there is a value recived as a prop, it equals the "checked" state value to to the prop value
+  // If there is a value recived as a prop, it equals the "checked" state value to to the prop value
   const adjustStateWithRecivedValue = (): void => {
     if (value !== undefined && value !== checked) {
       setChecked(!checked);
@@ -32,9 +34,9 @@ export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
     borderColor: color,
     borderWidth: 2,
     borderRadius: size / 5,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   };
 
   const checkedStyle: ViewStyle = {
@@ -42,10 +44,10 @@ export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
     backgroundColor: color,
   };
 
-  //It sets de corresponding style acording to the state
-  let currentStyle = checked ? checkedStyle : unCheckedStyle;
+  // It sets de corresponding style acording to the state
+  const currentStyle = checked ? checkedStyle : unCheckedStyle;
 
-  //It toogle the checked state and runs the posible "onValueChange" recived as a prop
+  // It toogle the checked state and runs the posible "onValueChange" recived as a prop
   const handleOnPress = () => {
     if (value === undefined) setChecked(!checked);
     if (onValueChange) onValueChange();
@@ -62,3 +64,5 @@ export const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
     </TouchableOpacity>
   );
 };
+
+export default CheckBox;

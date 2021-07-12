@@ -1,32 +1,27 @@
-import React from 'react'
-import { StyleSheet, ViewStyle } from 'react-native'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { ViewStyle, View, Text } from 'react-native';
+import styles from './styles';
 
 type labelBoxPropType = {
-    children: JSX.Element,
-    label: string,
-    style?: ViewStyle,
-}
-const LabelBox = ({children, label, style}: labelBoxPropType) : JSX.Element=> {
+  children: JSX.Element;
+  label: string;
+  // eslint-disable-next-line react/require-default-props
+  style?: ViewStyle;
+};
 
-    const localContainerSyle = {...style, ...styles.container}
+const LabelBox = ({
+  children,
+  label,
+  style = { backgroundColor: 'wite' },
+}: labelBoxPropType): JSX.Element => {
+  const localContainerSyle = { ...style, ...styles.container };
 
-    return (
-        <View style={localContainerSyle}>
-            <Text style={styles.text}>{label}</Text>
-            {children}
-        </View>
-    )
-}
+  return (
+    <View style={localContainerSyle}>
+      <Text style={styles.text}>{label}</Text>
+      {children}
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: 15
-    },
-    text: {
-        color: 'black', 
-        marginBottom: 5,
-    }
-})
-
-export default LabelBox
+export default LabelBox;

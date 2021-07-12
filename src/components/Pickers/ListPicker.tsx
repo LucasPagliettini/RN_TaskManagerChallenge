@@ -1,10 +1,8 @@
-import React from "react";
-import { Platform, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-import { Picker } from "@react-native-picker/picker"; //to solve installing errors: npm install @react-native-picker/picker --save
-import { styles } from "../FormStyles/formStyles";
-import { ViewStyle } from "react-native";
+import React from 'react';
+import { Platform, View, ViewStyle } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Picker } from '@react-native-picker/picker'; // to solve installing errors: npm install @react-native-picker/picker --save
+import styles from '../FormStyles/formStyles';
 
 type ListPickerPropType = {
   itemsList: string[];
@@ -15,33 +13,37 @@ type ListPickerPropType = {
 };
 
 const ListPicker = (prop: ListPickerPropType) => {
-  const { itemsList, defaultItem, propiety, initialValue, reciveTaskData } = prop;
+  const {
+    itemsList, defaultItem, propiety, initialValue, reciveTaskData,
+  } = prop;
 
   const defineCurrentContainerStyle = (): ViewStyle => {
-    if (Platform.OS === "ios")
+    if (Platform.OS === 'ios') {
       return {
         ...styles.container,
         paddingHorizontal: 0,
         paddingRight: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
       };
-    else return styles.container;
+    }
+    return styles.container;
   };
 
   const defineCurrentPickerItemStyle = () => {
-    if(Platform.OS === "ios")
+    if (Platform.OS === 'ios') {
+      return {
+        height: styles.container.height,
+        fontSize: styles.textInput.fontSize,
+        width: 310,
+      };
+    }
     return {
       height: styles.container.height,
       fontSize: styles.textInput.fontSize,
-      width: 310,
-    }
-    else return {
-      height: styles.container.height,
-      fontSize: styles.textInput.fontSize,
-    }
-  }
+    };
+  };
 
   const currentContainerStyle = defineCurrentContainerStyle();
   const currentPickerStyle = defineCurrentPickerItemStyle();
@@ -52,7 +54,7 @@ const ListPicker = (prop: ListPickerPropType) => {
         selectedValue={initialValue}
         onValueChange={(itemValue) => reciveTaskData(propiety, itemValue)}
         mode="dialog"
-        prompt={propiety.toUpperCase() + " Options"}
+        prompt={`${propiety.toUpperCase()} Options`}
         itemStyle={currentPickerStyle}
       >
         <Picker.Item
@@ -62,6 +64,7 @@ const ListPicker = (prop: ListPickerPropType) => {
         />
         {itemsList.map((item, index) => (
           <Picker.Item
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             label={item}
             value={item}
@@ -69,7 +72,7 @@ const ListPicker = (prop: ListPickerPropType) => {
           />
         ))}
       </Picker>
-      {Platform.OS === "ios" ? (
+      {Platform.OS === 'ios' ? (
         <MaterialCommunityIcons name="pan-vertical" size={40} color="black" />
       ) : null}
     </View>

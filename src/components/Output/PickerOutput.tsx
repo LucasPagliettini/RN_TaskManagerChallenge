@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { styles } from "../FormStyles/formStyles";
-import { dateFormater, timeFormater24 } from "../../Utils/UtilFunctions";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { dateFormater, timeFormater24 } from '../../Utils/UtilFunctions';
+import styles from '../FormStyles/formStyles';
 
 type PikerTypeProp = {
   output: Date;
@@ -10,29 +10,31 @@ type PikerTypeProp = {
   mode: string;
 };
 
-const PickerOutput = ({output, onPress, mode}: PikerTypeProp) => {
-
-  //It returns a string from the value of "output" and "mode" props.
+const PickerOutput = ({ output, onPress, mode }: PikerTypeProp) => {
+  //  It returns a string from the value of "output" and "mode" props.
   const defineOutputText = (): string => {
-    if (output)
-      if (mode === "date") return dateFormater(output);
-      else if (mode === "time") return timeFormater24(output);
-      else return null;
-    else return "Select";
+    if (output) {
+      if (mode === 'date') return dateFormater(output);
+      if (mode === 'time') return timeFormater24(output);
+      return null;
+    }
+    return 'Select';
   };
 
   const outputText = defineOutputText();
 
-  //It returns an object with specific text style properties depending on having
-  //or not some value for "output" prop.
-  const defineOutputTextStyle = () =>
-    output ? styles.textInput : { ...styles.textInput, ...styles.placeHolder };
+  //  It returns an object with specific text style properties depending on having
+  //  or not some value for "output" prop.
+  const defineOutputTextStyle = () => {
+    if (output) return styles.textInput;
+    return { ...styles.textInput, ...styles.placeHolder };
+  };
 
   const outputTextStyle = defineOutputTextStyle();
 
-  //It returns an icon Functional Component depending on "mode" prop value
+  //  It returns an icon Functional Component depending on "mode" prop value
   const defineOutputIcon = (): JSX.Element => {
-    if (mode === "time")
+    if (mode === 'time') {
       return (
         <Ionicons
           name="time-outline"
@@ -40,7 +42,8 @@ const PickerOutput = ({output, onPress, mode}: PikerTypeProp) => {
           color={styles.placeHolder.color}
         />
       );
-    else if (mode === "date")
+    }
+    if (mode === 'date') {
       return (
         <Ionicons
           name="md-calendar-sharp"
@@ -48,7 +51,8 @@ const PickerOutput = ({output, onPress, mode}: PikerTypeProp) => {
           color={styles.placeHolder.color}
         />
       );
-    else return null;
+    }
+    return null;
   };
 
   const auxIcon = defineOutputIcon();
@@ -58,9 +62,9 @@ const PickerOutput = ({output, onPress, mode}: PikerTypeProp) => {
       onTouchStart={onPress}
       style={{
         ...styles.container,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
       <Text style={outputTextStyle}>{outputText}</Text>

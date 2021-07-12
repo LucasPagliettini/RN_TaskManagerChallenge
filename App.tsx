@@ -5,15 +5,13 @@ import { store } from './src/redux/store';
 
 import Navigator from './src/navigation/Navigator';
 
+// eslint-disable-next-line arrow-body-style
 const App = () => {
-  
   return (
     <Provider store={store}>
-        <Navigator/>
+      <Navigator />
     </Provider>
   );
-}
+};
 
-export default App 
-
-
+export default App;

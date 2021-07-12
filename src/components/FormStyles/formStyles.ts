@@ -1,20 +1,22 @@
-import {StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'gainsboro',
-        borderRadius: 15,
-        paddingHorizontal: 15,
-        height: 50,
-    },
-    textInput: {
-        fontSize: 16,
-        color: 'black',
-    },
-    placeHolder: {
-        color: 'grey'
-    },
-    pickerView: {
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'gainsboro',
+    borderRadius: 15,
+    paddingHorizontal: 15,
+    height: 50,
+  },
+  textInput: {
+    fontSize: 16,
+    color: 'black',
+  },
+  placeHolder: {
+    color: 'grey',
+  },
+  pickerView: {
 
-    }
-})
+  },
+});
+
+export default styles;
