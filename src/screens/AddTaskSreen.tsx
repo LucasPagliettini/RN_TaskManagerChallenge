@@ -11,15 +11,15 @@ import {
 } from '../redux/actions/taskActions';
 // import own components
 import DateAndTimePicker from '../components/Pickers/DateAndTimePicker';
-import TextInput from '../components/Inputs/TextInput';
+import CustomTextInput from '../components/CustomTextInput';
 import ListPicker from '../components/Pickers/ListPicker';
 import PickerOutput from '../components/Output/PickerOutput';
-import LabelBox from '../components/LabelBox/LabelBox';
-import Button from '../components/Button/Button';
+import LabelBox from '../components/LabelBox';
+import CustomButton from '../components/CustomButton';
 // import CONSTANTS
-import { remindOptions, repeatOptions } from '../Utils/UtilConstants';
+import { remindOptions, repeatOptions } from '../utils/UtilConstants';
 // import UTIL Functions
-import { isLaterTime, isPastDate, isToday } from '../Utils/UtilFunctions';
+import { isLaterTime, isPastDate, isToday } from '../utils/UtilFunctions';
 
 // CONSTANTS declaration to use in task object and internal functions
 const TITLE = 'title';
@@ -30,6 +30,7 @@ const REMIND = 'remind';
 const REPEAT = 'repeat';
 const COMPLETED = 'completed';
 const ID = 'id';
+const COLOR = 'color';
 
 // Task object interface
 export interface ITask {
@@ -41,6 +42,7 @@ export interface ITask {
   [REPEAT]: string;
   [COMPLETED]: boolean;
   [ID]: number;
+  [COLOR]: string;
 }
 
 // eslint-disable-next-line no-shadow
@@ -60,6 +62,8 @@ export interface IPickerState {
 }
 
 const AddTaskSreen = ({ navigation }) => {
+  const colors = ['crimson', 'coral', 'gold', 'dodgerblue'];
+
   const initialTaskData: ITask = {
     [TITLE]: '',
     [DEADLINE]: null,
@@ -69,6 +73,7 @@ const AddTaskSreen = ({ navigation }) => {
     [REPEAT]: 'none',
     [COMPLETED]: false,
     [ID]: null,
+    [COLOR]: colors[0],
   };
 
   const initialPickerState: IPickerState = {
@@ -209,7 +214,7 @@ const AddTaskSreen = ({ navigation }) => {
     >
       <ScrollView style={{ paddingHorizontal: 25 }}>
         <LabelBox label="Title">
-          <TextInput
+          <CustomTextInput
             placeholder="Define task title"
             value={taskData.title}
             reciveTaskData={reciveTaskData}
@@ -263,7 +268,7 @@ const AddTaskSreen = ({ navigation }) => {
           reciveTaskData={reciveTaskData}
         />
       </ScrollView>
-      <Button
+      <CustomButton
         text="Create new task"
         color="green"
         onPress={() => newTaskDialog(taskData)}

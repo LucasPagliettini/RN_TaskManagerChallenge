@@ -3,7 +3,7 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import EmptyScreen from './EmptyScreen';
-import Button from '../components/Button/Button';
+import CustomButton from '../components/CustomButton';
 import AllTaskListSreen from './TaskListSceens/AllTaskListSreen';
 import CompletedTaskScreen from './TaskListSceens/CompletedTaskScreen';
 import UncompletedTaskScreen from './TaskListSceens/UncompletedTaskScreen';
@@ -30,7 +30,7 @@ const BoardScreen = ({ navigation }) => {
         <Tab.Screen name="Uncompleted" component={UncompletedTaskScreen} />
         <Tab.Screen name="Favorite" component={EmptyScreen} />
       </Tab.Navigator>
-      <Button
+      <CustomButton
         text="Add new task"
         color="green"
         onPress={() => {

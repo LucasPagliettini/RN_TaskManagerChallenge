@@ -1,14 +1,14 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { ITask } from '../../screens/AddTaskSreen';
-import Task from '../Task/Task';
+import Task from '../Task';
 
-type TasklistProp = {
+type TasklistType = {
   taskArray: ITask[];
 };
 
 // eslint-disable-next-line arrow-body-style
-const TasksList = ({ taskArray }: TasklistProp) => {
+const TasksList = ({ taskArray }: TasklistType) => {
   return (
     <FlatList
       data={taskArray}

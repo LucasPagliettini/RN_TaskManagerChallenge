@@ -1,10 +1,12 @@
 import React from 'react';
-import { Platform, View, ViewStyle } from 'react-native';
+import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker'; // to solve installing errors: npm install @react-native-picker/picker --save
-import styles from '../FormStyles/formStyles';
+import { IS_IOS } from '../../utils/UtilConstants';
+import styles from './styles';
+import Container from '../Container';
 
-type ListPickerPropType = {
+type ListPickerType = {
   itemsList: string[];
   defaultItem: string;
   propiety: string;
@@ -12,70 +14,41 @@ type ListPickerPropType = {
   reciveTaskData: Function;
 };
 
-const ListPicker = (prop: ListPickerPropType) => {
+const ListPicker = (prop: ListPickerType) => {
   const {
     itemsList, defaultItem, propiety, initialValue, reciveTaskData,
   } = prop;
 
-  const defineCurrentContainerStyle = (): ViewStyle => {
-    if (Platform.OS === 'ios') {
-      return {
-        ...styles.container,
-        paddingHorizontal: 0,
-        paddingRight: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      };
-    }
-    return styles.container;
-  };
-
-  const defineCurrentPickerItemStyle = () => {
-    if (Platform.OS === 'ios') {
-      return {
-        height: styles.container.height,
-        fontSize: styles.textInput.fontSize,
-        width: 310,
-      };
-    }
-    return {
-      height: styles.container.height,
-      fontSize: styles.textInput.fontSize,
-    };
-  };
-
-  const currentContainerStyle = defineCurrentContainerStyle();
-  const currentPickerStyle = defineCurrentPickerItemStyle();
-
   return (
-    <View style={currentContainerStyle}>
-      <Picker
-        selectedValue={initialValue}
-        onValueChange={(itemValue) => reciveTaskData(propiety, itemValue)}
-        mode="dialog"
-        prompt={`${propiety.toUpperCase()} Options`}
-        itemStyle={currentPickerStyle}
-      >
-        <Picker.Item
-          label={defaultItem}
-          value="none"
-          color={styles.placeHolder.color}
-        />
-        {itemsList.map((item, index) => (
+    <Container style={IS_IOS ? styles.containerIos : null}>
+      <View>
+        <Picker
+          selectedValue={initialValue}
+          onValueChange={(itemValue) => reciveTaskData(propiety, itemValue)}
+          mode="dialog"
+          prompt={`${propiety.toUpperCase()} Options`}
+          itemStyle={IS_IOS ? { ...styles.pickerStyle, width: 310 } : styles.pickerStyle}
+        >
           <Picker.Item
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            label={item}
-            value={item}
-            color={styles.textInput.color}
+            label={defaultItem}
+            value="none"
+            color={styles.placeHolder.color}
           />
-        ))}
-      </Picker>
-      {Platform.OS === 'ios' ? (
-        <MaterialCommunityIcons name="pan-vertical" size={40} color="black" />
-      ) : null}
-    </View>
+          {itemsList.map((item, index) => (
+            <Picker.Item
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              label={item}
+              value={item}
+              color={styles.text.color}
+            />
+          ))}
+        </Picker>
+        {IS_IOS ? (
+          <MaterialCommunityIcons name="pan-vertical" size={40} color="black" />
+        ) : null}
+      </View>
+    </Container>
   );
 };
 

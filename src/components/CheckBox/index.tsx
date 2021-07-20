@@ -4,13 +4,13 @@ import { ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
-type CheckBoxPropType = {
+type CheckBoxType = {
   size?: number;
   color?: string;
   onValueChange?: () => void;
   value?: boolean;
 };
-const CheckBox = (prop: CheckBoxPropType): JSX.Element => {
+const CheckBox = (prop: CheckBoxType): JSX.Element => {
   const {
     size = 20, color = 'green', onValueChange, value,
   } = prop;

@@ -9,11 +9,11 @@ import { ITask } from '../../screens/AddTaskSreen';
 import CheckBox from '../CheckBox';
 import styles from './styles';
 
-type TaskPropType = {
+type TaskType = {
   item: ITask;
 };
 
-const Task = ({ item }: TaskPropType) => {
+const Task = ({ item }: TaskType) => {
   const dispatch = useDispatch();
 
   const changeCompletedState = () => {

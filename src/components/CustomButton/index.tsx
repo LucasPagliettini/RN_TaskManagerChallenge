@@ -2,13 +2,13 @@ import * as React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { styles } from './styles';
 
-interface IButtonProps {
+interface CusromButtonInterface {
   text: string;
   onPress: () => void;
   color: string;
 }
 
-const Button = (props: IButtonProps) => {
+const CusromButton = (props: CusromButtonInterface) => {
   const { text, onPress, color } = props;
 
   return (
@@ -23,4 +23,4 @@ const Button = (props: IButtonProps) => {
   );
 };
 
-export default Button;
+export default CusromButton;

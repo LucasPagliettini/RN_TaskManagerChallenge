@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 // VALUES FOR THE REPEAT PICKER
 export const DAILY = 'Daily';
 export const MONDAYTOFRIDAY = 'Monday to Friday';
@@ -21,3 +23,14 @@ export const remindOptions = [
   THITRY_MINUTES_EARLY,
   ONE_HOUR_EARLY,
 ];
+
+// Platform constants
+export const IS_IOS = Platform.OS === 'ios';
+export const IS_ANDROID = Platform.OS === 'android';
+
+// LAYOUT CONSTANTS
+export const LayOutValues = {
+  placeholderColor: 'grey',
+  fontSize: 16,
+  fontColor: 'black',
+};

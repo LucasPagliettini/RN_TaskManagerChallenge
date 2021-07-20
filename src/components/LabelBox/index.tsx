@@ -1,19 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { ViewStyle, View, Text } from 'react-native';
 import styles from './styles';
 
-type labelBoxPropType = {
+type LabelBoxType = {
   children: JSX.Element;
   label: string;
-  // eslint-disable-next-line react/require-default-props
   style?: ViewStyle;
 };
 
-const LabelBox = ({
-  children,
-  label,
-  style = { backgroundColor: 'wite' },
-}: labelBoxPropType): JSX.Element => {
+const LabelBox = (props: LabelBoxType): JSX.Element => {
+  const { children, label, style } = props;
+
   const localContainerSyle = { ...style, ...styles.container };
 
   return (
