@@ -12,7 +12,7 @@ type PikerType = {
 };
 
 const PickerOutput = ({ output, onPress, mode }: PikerType) => {
-  //  It returns a string from the value of "output" and "mode" props.
+// It returns a string from the value of "output" and "mode" props.
   const defineOutputText = (): string => {
     if (output) {
       if (mode === 'date') return dateFormater(output);
@@ -22,16 +22,12 @@ const PickerOutput = ({ output, onPress, mode }: PikerType) => {
     return 'Select';
   };
 
-  const outputText = defineOutputText();
-
   //  It returns an object with specific text style properties depending on having
   //  or not some value for "output" prop.
   const defineOutputTextStyle = () => {
     if (output) return styles.text;
     return { ...styles.text, ...styles.placeHolder };
   };
-
-  const outputTextStyle = defineOutputTextStyle();
 
   //  It returns an icon Functional Component depending on "mode" prop value
   const defineOutputIcon = (): JSX.Element => {
@@ -56,14 +52,12 @@ const PickerOutput = ({ output, onPress, mode }: PikerType) => {
     return null;
   };
 
-  const auxIcon = defineOutputIcon();
-
   return (
     <View onTouchStart={onPress}>
       <Container style={styles.localContainer}>
         <>
-          <Text style={outputTextStyle}>{outputText}</Text>
-          {auxIcon}
+          <Text style={defineOutputTextStyle()}>{defineOutputText()}</Text>
+          {defineOutputIcon()}
         </>
       </Container>
     </View>

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import styles from './styles';
 
 type CheckBoxType = {
   size?: number;
@@ -12,7 +13,7 @@ type CheckBoxType = {
 };
 const CheckBox = (prop: CheckBoxType): JSX.Element => {
   const {
-    size = 20, color = 'green', onValueChange, value,
+    size = 20, color, onValueChange, value,
   } = prop;
 
   const [checked, setChecked] = useState(false);
@@ -44,9 +45,6 @@ const CheckBox = (prop: CheckBoxType): JSX.Element => {
     backgroundColor: color,
   };
 
-  // It sets de corresponding style acording to the state
-  const currentStyle = checked ? checkedStyle : unCheckedStyle;
-
   // It toogle the checked state and runs the posible "onValueChange" recived as a prop
   const handleOnPress = () => {
     if (value === undefined) setChecked(!checked);
@@ -54,15 +52,24 @@ const CheckBox = (prop: CheckBoxType): JSX.Element => {
   };
 
   return (
-    <TouchableOpacity style={currentStyle} onPress={handleOnPress}>
+    <TouchableOpacity
+      style={checked ? checkedStyle : unCheckedStyle}
+      onPress={handleOnPress}
+    >
       <Ionicons
         name="checkmark-sharp"
         size={size + 2}
-        style={{ margin: -4 }}
+        style={styles.incon}
         color="white"
       />
     </TouchableOpacity>
   );
+};
+
+CheckBox.defaultProps = {
+  color: 'red',
+  size: 25,
+  value: false,
 };
 
 export default CheckBox;

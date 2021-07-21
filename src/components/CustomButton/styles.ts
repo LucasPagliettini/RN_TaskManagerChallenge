@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     padding: 15,
     backgroundColor: 'grey',
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 15,
     textAlign: 'center',
-    //textTransform: 'uppercase',
-  }
+  },
 });
+
+export default styles;

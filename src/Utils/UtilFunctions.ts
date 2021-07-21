@@ -10,6 +10,7 @@ export const storeData = async (storeKey: string, objectValue: Object) : Promise
     Alert.alert('error', e);
   }
 };
+
 // eslint-disable-next-line consistent-return
 export const getData = async (storeKey: string) => {
   try {

@@ -20,8 +20,8 @@ const ListPicker = (prop: ListPickerType) => {
   } = prop;
 
   return (
-    <Container style={IS_IOS ? styles.containerIos : null}>
-      <View>
+    <Container>
+      <View style={IS_IOS ? styles.containerIos : null}>
         <Picker
           selectedValue={initialValue}
           onValueChange={(itemValue) => reciveTaskData(propiety, itemValue)}

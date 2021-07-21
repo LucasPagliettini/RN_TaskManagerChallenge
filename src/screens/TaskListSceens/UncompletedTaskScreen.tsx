@@ -10,8 +10,7 @@ const UncompletedTaskScreen = () => {
 
   // It returns a array with the uncompleted tasks
   const uncompletedTaskArray = taskArrayFromStore?.filter(
-    // eslint-disable-next-line comma-dangle
-    (item) => item.completed === false
+    (item) => item.completed === false,
   );
 
   return (

@@ -7,16 +7,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     height: 50,
   },
-  textInput: {
-    fontSize: 16,
-    color: 'black',
-  },
-  placeHolder: {
-    color: 'grey',
-  },
-  pickerView: {
 
-  },
 });
 
 export default styles;

@@ -27,10 +27,3 @@ export const remindOptions = [
 // Platform constants
 export const IS_IOS = Platform.OS === 'ios';
 export const IS_ANDROID = Platform.OS === 'android';
-
-// LAYOUT CONSTANTS
-export const LayOutValues = {
-  placeholderColor: 'grey',
-  fontSize: 16,
-  fontColor: 'black',
-};

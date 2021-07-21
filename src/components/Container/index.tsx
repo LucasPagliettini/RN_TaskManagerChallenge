@@ -6,10 +6,15 @@ type ContainerType = {
   children: JSX.Element;
   style?: ViewStyle;
 };
+
 const Container = ({ children, style }: ContainerType) => (
   <View style={{ ...style, ...styles.container }}>
     {children}
   </View>
 );
+
+Container.defaultProps = {
+  style: null,
+};
 
 export default Container;

@@ -1,14 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 16,
-    color: 'black',
-    marginTop: 10,
+  incon: {
+    margin: -4,
   },
-  placeHolder: {
-    color: 'grey',
-  },
+
 });
 
 export default styles;

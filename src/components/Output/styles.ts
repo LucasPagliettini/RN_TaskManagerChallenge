@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { LayOutValues } from '../../utils/UtilConstants';
 
 const styles = StyleSheet.create({
   localContainer: {
@@ -8,11 +7,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    fontSize: LayOutValues.fontSize,
-    color: LayOutValues.fontColor,
+    fontSize: 16,
+    color: 'black',
   },
   placeHolder: {
-    color: LayOutValues.placeholderColor,
+    color: 'grey',
   },
 });
 

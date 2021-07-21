@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { LayOutValues } from '../../utils/UtilConstants';
 
 const styles = StyleSheet.create({
   containerIos: {
@@ -10,15 +9,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: LayOutValues.fontSize,
-    color: LayOutValues.fontColor,
+    fontSize: 16,
+    color: 'black',
   },
   placeHolder: {
-    color: LayOutValues.placeholderColor,
+    color: 'grey',
   },
   pickerStyle: {
     height: 50,
-    fontSize: LayOutValues.fontSize,
+    fontSize: 16,
   },
 });
 

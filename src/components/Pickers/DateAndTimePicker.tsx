@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-//  npm install @react-native-community/datetimepicker --legacy-peer-deps
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { IPickerState } from '../../screens/AddTaskSreen';
 import { IS_ANDROID } from '../../utils/UtilConstants';
@@ -35,14 +34,12 @@ const DateAndTimePicker = (prop: DateAndTimePickerType) => {
     return new Date(Date.now());
   };
 
-  const currentDate = defineCurrentDate();
-
   return (
     <View>
       <DateTimePickerModal
         testID="dateTimePicker"
         isVisible={pickerState.show}
-        date={currentDate}
+        date={defineCurrentDate()}
         mode={pickerState.mode}
         display={IS_ANDROID ? 'default' : 'spinner'}
         onConfirm={confirm}

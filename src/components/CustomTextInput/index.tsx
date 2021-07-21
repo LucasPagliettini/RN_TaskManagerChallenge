@@ -16,6 +16,9 @@ const CustomTextInput = (prop: InputPropsType) => {
     placeholder, value, reciveTaskData, edityngPropiety,
   } = prop;
 
+  const handleOnchange = (text: string) => {
+    reciveTaskData(edityngPropiety, text);
+  };
   return (
     <Container>
       <TextInput
@@ -23,7 +26,7 @@ const CustomTextInput = (prop: InputPropsType) => {
         placeholder={placeholder}
         placeholderTextColor={styles.placeHolder.color}
         value={value}
-        onChangeText={(text) => reciveTaskData(edityngPropiety, text)}
+        onChangeText={(text) => handleOnchange(text)}
       />
     </Container>
   );
