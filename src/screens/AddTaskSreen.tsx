@@ -17,9 +17,9 @@ import PickerOutput from '../components/Output/PickerOutput';
 import LabelBox from '../components/LabelBox';
 import CustomButton from '../components/CustomButton';
 // import CONSTANTS
-import { remindOptions, repeatOptions } from '../utils/UtilConstants';
+import { remindOptions, repeatOptions } from '../util/UtilConstants';
 // import UTIL Functions
-import { isLaterTime, isPastDate, isToday } from '../utils/UtilFunctions';
+import { isLaterTime, isPastDate, isToday } from '../util/UtilFunctions';
 
 // CONSTANTS declaration to use in task object and internal functions
 const TITLE = 'title';

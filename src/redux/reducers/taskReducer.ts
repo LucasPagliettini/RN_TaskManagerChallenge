@@ -1,5 +1,5 @@
 import { ITask } from '../../screens/AddTaskSreen';
-import { storeData } from '../../utils/UtilFunctions';
+import { storeData } from '../../util/UtilFunctions';
 import {
   ADD_TASK,
   IActionPlainObject,

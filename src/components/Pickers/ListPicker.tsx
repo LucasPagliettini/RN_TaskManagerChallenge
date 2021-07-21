@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker'; // to solve installing errors: npm install @react-native-picker/picker --save
-import { IS_IOS } from '../../utils/UtilConstants';
+import { IS_IOS } from '../../util/UtilConstants';
 import styles from './styles';
 import Container from '../Container';
 

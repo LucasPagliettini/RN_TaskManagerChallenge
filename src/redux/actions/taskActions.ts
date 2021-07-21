@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 import { ITask } from '../../screens/AddTaskSreen';
-import { getData } from '../../utils/UtilFunctions';
+import { getData } from '../../util/UtilFunctions';
 
 export const ADD_TASK: string = 'ADD_TASK';
 export const TOOGLE_COMPLETE: string = 'TOOGLE_COMPLETE';

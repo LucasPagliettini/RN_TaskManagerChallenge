@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import { IS_IOS } from '../../utils/UtilConstants';
+import { IS_IOS } from '../../util/UtilConstants';
 import Container from '../Container';
 import styles from './styles';
 

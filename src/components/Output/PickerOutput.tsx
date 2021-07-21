@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { dateFormater, timeFormater24 } from '../../utils/UtilFunctions';
+import { dateFormater, timeFormater24 } from '../../util/UtilFunctions';
 import Container from '../Container';
 import styles from './styles';
 

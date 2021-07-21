@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { IPickerState } from '../../screens/AddTaskSreen';
-import { IS_ANDROID } from '../../utils/UtilConstants';
+import { IS_ANDROID } from '../../util/UtilConstants';
 
 type DateAndTimePickerType = {
   pickerState: IPickerState;
