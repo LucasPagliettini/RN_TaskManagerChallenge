@@ -58,5 +58,3 @@ Each listed task has a checkBox that tells the user if the task is completed o n
 ### Author
 
 Lucas Pagliettini 2021
-
-Github Repository [https://github.com/Lucastini/RN_TaskManagerChallenge](https://github.com/Lucastini/RN_TaskManagerChallenge)
